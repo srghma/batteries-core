@@ -14,6 +14,7 @@ import Test.Unit (suite) as Test.Unit
 import Test.Unit.Assert (equal) as Assert
 
 newtype ADecimal = ADecimal Decimal
+
 derive instance eqADecimal ∷ Eq ADecimal
 
 instance arbitraryADecimal ∷ Arbitrary ADecimal where
@@ -31,7 +32,7 @@ suite =
   Test.Unit.suite "Test.Polyform.Decimal" $ do
     Test.Unit.suite "formatting with dot separator and comma decimal separator" $ do
       let
-        formatting = Decimal.formatting { decimalSeparator: Just ",", separators: [".", " "] }
+        formatting = Decimal.formatting { decimalSeparator: Just ",", separators: [ ".", " " ] }
       test "print" $ do
         Assert.equal (Just "1.234.567,9889") (Decimal.fromString "1234567.9889" >>= Decimal.print formatting >>> pure)
 
@@ -44,10 +45,9 @@ suite =
       test "parse with mixed separator" $ do
         Assert.equal (Decimal.fromString "1234567.9889") (Decimal.parse formatting "1.234 567,9889")
 
-
     Test.Unit.suite "formatting with comma separator and dot decimal separator" $ do
       let
-        formatting = Decimal.formatting { decimalSeparator: Just ".", separators: [",", " "] }
+        formatting = Decimal.formatting { decimalSeparator: Just ".", separators: [ ",", " " ] }
 
       test "print" $ do
         Assert.equal (Just "1,234,567.9889") (Decimal.fromString "1234567.9889" >>= Decimal.print formatting >>> pure)

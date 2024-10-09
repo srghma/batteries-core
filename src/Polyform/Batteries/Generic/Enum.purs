@@ -13,8 +13,7 @@ import Type.Row (type (+))
 
 _invalidEnumIndex = Proxy ∷ Proxy "invalidEnumIndex"
 
-type InvalidEnumIndex e
-  = ( invalidEnumIndex ∷ Int | e )
+type InvalidEnumIndex e = (invalidEnumIndex ∷ Int | e)
 
 -- | We use a `Proxy` value here to help the compiler choose
 -- | the output enum type.

@@ -13,8 +13,7 @@ import Type.Row (type (+))
 
 _numberExpected = Proxy ∷ Proxy "numberExpected"
 
-type NumberExpected e
-  = ( numberExpected ∷ String | e )
+type NumberExpected e = (numberExpected ∷ String | e)
 
 -- | TODO: Move these two pieces `Number.Formatter`
 -- | module and use `purescript-formatters`

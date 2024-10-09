@@ -18,8 +18,7 @@ import Polyform.Dual (dual) as Dual
 import Polyform.Validator (liftFnMaybe) as Validator
 import Type.Proxy (Proxy(..))
 
-newtype Formatting
-  = Formatting
+newtype Formatting = Formatting
   { parse ∷ String → Maybe Decimal
   , print ∷ Decimal → String
   }
@@ -85,19 +84,20 @@ parse (Formatting fmt) = fmt.parse
 print ∷ Formatting → Decimal → String
 print (Formatting fmt) = fmt.print
 
-validator ∷
-  ∀ e m.
-  Applicative m ⇒
-  Formatting →
-  Batteries.Validator' m ( decimal ∷ String | e ) String Decimal
+validator
+  ∷ ∀ e m
+  . Applicative m
+  ⇒ Formatting
+  → Batteries.Validator' m (decimal ∷ String | e) String Decimal
 validator (Formatting { parse: p }) = Validator.liftFnMaybe
-  (Batteries.error _decimal $ append "Expecting a decimal number got: ") p
+  (Batteries.error _decimal $ append "Expecting a decimal number got: ")
+  p
 
-dual ∷
-  ∀ e m.
-  Applicative m ⇒
-  Formatting →
-  Batteries.Dual' m ( decimal ∷ String | e ) String Decimal
+dual
+  ∷ ∀ e m
+  . Applicative m
+  ⇒ Formatting
+  → Batteries.Dual' m (decimal ∷ String | e) String Decimal
 dual (fmt@(Formatting { print: p })) = Dual.dual (validator fmt) (p >>> pure)
 
 -- | Usually you want to push formatting context into the validator

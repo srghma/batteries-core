@@ -11,8 +11,7 @@ import Type.Row (type (+))
 
 _intExpected = Proxy ∷ Proxy "intExpected"
 
-type IntExpected e
-  = ( intExpected ∷ String | e )
+type IntExpected e = (intExpected ∷ String | e)
 
 validator ∷ ∀ e m. Applicative m ⇒ Batteries.Validator' m (IntExpected + e) String Int
 validator = Validator.liftFnMaybe (Batteries.error _intExpected $ append "Expecting a string but got: ") Int.fromString

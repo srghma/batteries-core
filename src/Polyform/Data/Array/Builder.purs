@@ -2,8 +2,7 @@ module Polyform.Data.Array.Builder where
 
 import Prelude
 
-newtype Builder a
-  = Builder (Array a → Array a)
+newtype Builder a = Builder (Array a → Array a)
 
 instance semigroupBuilder ∷ Semigroup (Builder a) where
   append (Builder b1) (Builder b2) = Builder (b1 <<< b2)

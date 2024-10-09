@@ -37,28 +37,26 @@ import Unsafe.Coerce (unsafeCoerce)
 -- |
 -- | Maybe this pattern is more general in the I18N context
 -- | and this should be renamed to `Msg` and moved outside?
-type Msg info
-  = { msg ∷ Data.Lazy String, info ∷ Variant info }
+type Msg info = { msg ∷ Data.Lazy String, info ∷ Variant info }
 
 msg ∷ ∀ info l infos_ infos. IsSymbol l ⇒ Row.Cons l info infos_ infos ⇒ Data.Lazy String → Proxy l → info → Msg infos
 msg m l i = { msg: m, info: Variant.inj l i }
 
-msg' ::
-  ∀ t6 t7 t8 t9.
-  IsSymbol t8 ⇒
-  Row.Cons t8 t9 t7 t6 ⇒
-  String →
-  Proxy t8 →
-  t9 →
-  { info ∷ Variant t6
-  , msg ∷ Data.Lazy String
-  }
+msg'
+  :: ∀ t6 t7 t8 t9
+  . IsSymbol t8
+  ⇒ Row.Cons t8 t9 t7 t6
+  ⇒ String
+  → Proxy t8
+  → t9
+  → { info ∷ Variant t6
+    , msg ∷ Data.Lazy String
+    }
 msg' m = msg (defer \_ → m)
 
 -- | Do we want to migrate to this kind of error repr
 --   = Array ({ msg ∷ String, info ∷ Variant errs })
-type Errors err
-  = Array err
+type Errors err = Array err
 
 -- | Usually we use this representation so we carry
 -- | semantic error information around.
