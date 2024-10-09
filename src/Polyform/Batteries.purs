@@ -80,7 +80,7 @@ invalid ∷ ∀ e errs l o t. Row.Cons l e t errs ⇒ IsSymbol l ⇒ Proxy l →
 invalid l prt = Validation.invalid <<< error l prt
 
 -- | Similar to `Variant.on` but on `Msg`.
--- | You can 
+-- | You can
 -- |
 -- | ```
 -- | flattenEnumErr = do
@@ -92,10 +92,10 @@ invalid l prt = Validation.invalid <<< error l prt
 -- | ```
 
 onErr
-  ∷ ∀ proxy sym info b infos_ infos
+  ∷ ∀ sym info b infos_ infos
   . Row.Cons sym info infos_ infos
   ⇒ IsSymbol sym
-  ⇒ proxy sym
+  ⇒ Proxy sym
   → ({ info :: info, msg :: Data.Lazy String } → b)
   → (Msg infos_ → b)
   → Msg infos
@@ -110,5 +110,3 @@ onErr p f g { msg: m, info: r } =
 
   coerceR ∷ Variant infos → Variant infos_
   coerceR = unsafeCoerce
-
-

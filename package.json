@@ -2,14 +2,12 @@
   "name": "purescript-polyform-batteries-core",
   "version": "0.2.0",
   "devDependencies": {
-    "pscid": "^2.9.0",
-    "pulp": "^15.0.0",
-    "purescript": "^0.14.1",
-    "spago": "^0.20.2"
+    "purescript": "^0.15.15",
+    "spago": "next"
   },
   "dependencies": {
-    "decimal.js": "^10.2.0",
-    "global": "^4.3.2",
-    "xhr2": "^0.1.4"
+    "decimal.js": "^10.4.3",
+    "global": "^4.4.0",
+    "xhr2": "^0.2.1"
   }
 }

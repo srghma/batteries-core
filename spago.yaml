@@ -1,0 +1,31 @@
+package:
+  dependencies:
+    - arrays
+    - decimals
+    - enums
+    - integers
+    - lazy
+    - maybe
+    - numbers
+    - polyform
+    - prelude
+    - strings
+    - typelevel-prelude
+    - unsafe-coerce
+    - validation
+    - variant
+  name: batteries-core
+  test:
+    main: Test.Main
+    dependencies:
+      - effect
+      - partial
+      - quickcheck
+      - test-unit
+workspace:
+  extraPackages:
+    polyform:
+      git: https://github.com/srghma/polyform.git
+      ref: master
+  packageSet:
+    registry: 60.4.0

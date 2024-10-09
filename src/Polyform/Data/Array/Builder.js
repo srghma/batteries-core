@@ -2,16 +2,16 @@
 /* jshint -W097 */
 "use strict";
 
-exports.unsafeCons = function(a) {
+export function unsafeCons(a) {
   return function(arr) {
     arr.unshift(a);
     return arr;
   };
-};
+}
 
-exports.unsafeSnoc = function(a) {
+export function unsafeSnoc(a) {
   return function(arr) {
     arr.push(a);
     return arr;
   };
-};
+}

@@ -3,7 +3,7 @@
 
 "use strict";
 
-exports.reverseCodeUnits = function(s) {
+export function reverseCodeUnits(s) {
   var i = s.length, result = "";
 
   while (i) {
@@ -11,4 +11,4 @@ exports.reverseCodeUnits = function(s) {
   }
 
   return result;
-};
+}
